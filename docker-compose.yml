@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: cheerful-takeaways-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cheerful_takeaways
+      POSTGRES_USER: cheerful
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    volumes:
+      - cheerful_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cheerful -d cheerful_takeaways"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [cheerful-private]
+  api:
+    build: ./backend
+    container_name: cheerful-takeaways-api
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "127.0.0.1:8014:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [cheerful-private]
+volumes:
+  cheerful_pgdata:
+networks:
+  cheerful-private:
+    name: cheerful-takeaways-private
+    driver: bridge
