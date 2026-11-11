@@ -202,3 +202,10 @@ footer{background:#fff3d6}
  .visit-side b{font-size:16px}
 }
 @media(max-width:390px){.header-location b{max-width:78px;font-size:7px}.identity{gap:7px}.identity small{letter-spacing:1px}}
+
+
+/* A clear route-finding action without pretending this is a verified map pin */
+.map-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 14px;border-radius:999px;background:#276044;color:#fff;font-size:11px;font-weight:700;text-decoration:none;box-shadow:0 4px 0 #1c472f;transition:transform .2s,background .2s}
+.map-link:hover{transform:translateY(-2px);background:#f06445}
+.map-note{display:block;margin-top:8px;font-size:9px;color:#665b38}
+@media(max-width:760px){.visit-side .map-link{margin-top:10px}.visit-side .map-note{font-size:8px}}
