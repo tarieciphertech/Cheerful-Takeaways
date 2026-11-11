@@ -209,3 +209,10 @@ footer{background:#fff3d6}
 .map-link:hover{transform:translateY(-2px);background:#f06445}
 .map-note{display:block;margin-top:8px;font-size:9px;color:#665b38}
 @media(max-width:760px){.visit-side .map-link{margin-top:10px}.visit-side .map-note{font-size:8px}}
+
+
+/* Checkout details: delivery address and payment preference */
+.checkout-modal label{display:block;margin:14px 0 6px;font-size:12px;font-weight:700;color:var(--ink)}
+.checkout-modal input,.checkout-modal textarea,.checkout-modal select{display:block;width:100%;margin-top:7px;padding:12px 13px;border:1px solid #e5dcc8;border-radius:10px;background:#fffdf7;color:var(--ink);font:inherit;font-size:14px;box-sizing:border-box}
+.checkout-modal input:focus,.checkout-modal textarea:focus,.checkout-modal select:focus{outline:2px solid #f4c957;border-color:#276044}
+.checkout-modal [hidden]{display:none!important}
