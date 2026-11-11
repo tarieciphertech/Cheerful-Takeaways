@@ -155,3 +155,50 @@ footer{background:#fff3d6}
  .hero-visual{border-width:5px;box-shadow:0 12px 0 #f6dfaa,0 20px 35px #69502a18}
  .dish:nth-child(3n+2){transform:none}
 }
+
+
+/* Make the physical location impossible to miss */
+.header-location{display:flex;align-items:center;gap:10px;margin-left:auto;margin-right:28px;padding:9px 14px;background:#fff0bd;border:1px solid #f2d88f;border-radius:12px;color:#24543a;white-space:nowrap}
+.header-location .pin-dot{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#f06445;color:#fff;font-size:19px}
+.header-location small,.header-location b{display:block}
+.header-location small{font-size:8px;letter-spacing:1.5px;color:#b34d34;font-weight:700;margin-bottom:3px}
+.header-location b{font-size:11px}
+.hero-location{display:inline-flex;align-items:center;gap:12px;margin-top:30px;padding:13px 16px;background:#fff0bd;border:2px solid #f3d889;border-radius:13px;box-shadow:0 7px 0 #f5e4b9;color:#28543b;transition:transform .2s,box-shadow .2s}
+.hero-location:hover{transform:translateY(-3px);box-shadow:0 10px 0 #f5e4b9}
+.location-pin{width:42px;height:42px;display:grid;place-items:center;background:#f06445;color:#fff;border-radius:50%;font-size:24px}
+.hero-location small,.hero-location b,.hero-location em{display:block;font-style:normal}
+.hero-location small{font-size:8px;letter-spacing:1.4px;color:#b34d34;font-weight:700;margin-bottom:3px}
+.hero-location b{font-size:13px}
+.hero-location em{font-size:10px;color:#68766b;margin-top:2px}
+.location-arrow{font-size:17px;color:#f06445;margin-left:8px}
+.visit-banner{display:flex;align-items:center;gap:24px;padding:31px max(9%,calc((100% - 1120px)/2));background:#ffd45e;color:#254c36;position:relative;overflow:hidden}
+.visit-banner:after{content:"✳";position:absolute;right:25%;top:-70px;font-size:220px;color:#ffffff35;pointer-events:none}
+.visit-icon{flex:0 0 64px;height:64px;border-radius:20px;background:#f06445;color:#fff;display:grid;place-items:center;font-size:36px;box-shadow:0 7px 0 #dc9d39;transform:rotate(-7deg)}
+.visit-copy{flex:1}
+.visit-copy>small{font-size:9px;font-weight:700;letter-spacing:2px;color:#a64b32}
+.visit-copy h2{font:700 clamp(25px,3vw,36px)/1.05 'Playfair Display';letter-spacing:-.6px;margin:5px 0 8px}
+.visit-copy p{margin:0;display:flex;align-items:center;gap:12px;font-size:13px}
+.visit-copy p strong{font-weight:700}
+.visit-copy p span{padding-left:12px;border-left:1px solid #bd9d4e;color:#52644f}
+.visit-side{position:relative;z-index:1;text-align:right;border-left:1px solid #c5a34c;padding-left:28px}
+.visit-side span{display:block;font-size:8px;letter-spacing:2px;font-weight:700;color:#a64b32;margin-bottom:6px}
+.visit-side b{font:600 19px/1.2 'Playfair Display'}
+.visit-side i{font-style:normal;color:#f06445}
+@media(max-width:760px){
+ .topbar{gap:10px}
+ .header-location{margin:0 0 0 auto;padding:6px 8px;gap:6px;border-radius:9px}
+ .header-location .pin-dot{width:27px;height:27px;font-size:16px}
+ .header-location small{font-size:6px;letter-spacing:1px}
+ .header-location b{font-size:8px;white-space:normal;max-width:100px}
+ .topbar nav{margin-left:0}
+ .hero-location{margin-top:24px}
+ .visit-banner{padding:24px 7%;gap:13px;flex-wrap:wrap}
+ .visit-icon{flex-basis:48px;height:48px;border-radius:15px;font-size:27px}
+ .visit-copy{min-width:calc(100% - 70px)}
+ .visit-copy h2{font-size:27px}
+ .visit-copy p{font-size:11px;flex-wrap:wrap;gap:6px}
+ .visit-copy p span{padding-left:8px}
+ .visit-side{width:100%;text-align:left;border-left:0;border-top:1px solid #c5a34c;padding:12px 0 0 61px}
+ .visit-side b{font-size:16px}
+}
+@media(max-width:390px){.header-location b{max-width:78px;font-size:7px}.identity{gap:7px}.identity small{letter-spacing:1px}}
