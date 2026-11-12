@@ -216,3 +216,10 @@ footer{background:#fff3d6}
 .checkout-modal input,.checkout-modal textarea,.checkout-modal select{display:block;width:100%;margin-top:7px;padding:12px 13px;border:1px solid #e5dcc8;border-radius:10px;background:#fffdf7;color:var(--ink);font:inherit;font-size:14px;box-sizing:border-box}
 .checkout-modal input:focus,.checkout-modal textarea:focus,.checkout-modal select:focus{outline:2px solid #f4c957;border-color:#276044}
 .checkout-modal [hidden]{display:none!important}
+
+
+/* Persistent basket and clear-order control */
+.clear-cart{align-self:flex-end;border:0;background:transparent;color:#b6533b;font-size:10px;font-weight:700;text-decoration:underline;padding:9px 0;cursor:pointer}
+.clear-cart[hidden]{display:none}
+.line-controls button{display:grid;place-items:center;font-size:15px;color:var(--ink)}
+.line-controls button:focus-visible,.clear-cart:focus-visible{outline:2px solid #f06445;outline-offset:3px}
