@@ -428,3 +428,29 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
 @keyframes add-pop{0%{transform:scale(1)}40%{transform:scale(1.22) rotate(8deg)}100%{transform:scale(1)}}
 @keyframes count-pop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
 @media(prefers-reduced-motion:reduce){.menu-grid.is-switching .dish,.add-btn.added,#cartCount{animation:none!important}}
+
+
+/* Cheerful atmosphere — a slow, sunny animated page backdrop */
+body{
+ background-color:var(--cream);
+ background-image:
+  radial-gradient(ellipse at 12% 18%,rgba(255,211,79,.24) 0,rgba(255,211,79,0) 34%),
+  radial-gradient(ellipse at 88% 34%,rgba(223,240,223,.72) 0,rgba(223,240,223,0) 32%),
+  radial-gradient(ellipse at 68% 82%,rgba(240,91,63,.09) 0,rgba(240,91,63,0) 29%),
+  radial-gradient(ellipse at 4% 76%,rgba(255,200,61,.15) 0,rgba(255,200,61,0) 28%);
+ background-size:160% 160%,170% 170%,180% 180%,160% 160%;
+ background-position:0% 0%,100% 0%,100% 100%,0% 100%;
+ background-attachment:fixed;
+ animation:cheerful-background-flow 30s ease-in-out infinite alternate;
+}
+@keyframes cheerful-background-flow{
+ 0%{background-position:0% 0%,100% 0%,100% 100%,0% 100%}
+ 50%{background-position:35% 25%,70% 40%,55% 70%,20% 60%}
+ 100%{background-position:75% 55%,15% 75%,0% 15%,80% 20%}
+}
+@media(max-width:760px){
+ body{background-attachment:scroll;animation-duration:38s}
+}
+@media(prefers-reduced-motion:reduce){
+ body{animation:none!important;background-position:0 0,100% 0,100% 100%,0 100%}
+}
