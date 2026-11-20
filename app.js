@@ -26,3 +26,42 @@ $('closeModal').onclick=()=>$('modal').classList.remove('show');$('modal').addEv
 function updateFulfilment(){const delivery=selectedFulfilment==='Delivery';$('deliveryAddressWrap').hidden=!delivery;$('deliveryAddress').required=delivery;}document.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>{selectedFulfilment=b.dataset.choice;document.querySelectorAll('[data-choice]').forEach(x=>x.classList.toggle('selected',x===b));updateFulfilment()});updateFulfilment();
 $('demoSubmit').onclick=()=>{const {count,total}=totals();const name=$('customerName').value.trim();if(!name){toast('Please enter a name for the demo summary');$('customerName').focus();return}const phone=$('customerPhone').value.trim();const address=$('deliveryAddress').value.trim();if(!phone){toast('Please add a contact phone number');$('customerPhone').focus();return}if(selectedFulfilment==='Delivery'&&!address){toast('Please add your delivery address');$('deliveryAddress').focus();return}const payment=$('paymentMethod').value;const lines=Object.entries(cart).map(([id,q])=>q+' × '+menu.find(d=>d.id===+id).name).join('%0A');const summary='CHEERFUL TAKEAWAYS — DEMO ORDER%0AName: '+encodeURIComponent(name)+'%0AFulfilment: '+selectedFulfilment+'%0A'+(address?'Delivery address: '+encodeURIComponent(address)+'%0A':'')+'Payment preference: '+encodeURIComponent(payment)+'%0AItems:%0A'+lines+'%0ATotal: '+money(total)+'%0APhone: '+encodeURIComponent(phone)+'%0ANotes: '+encodeURIComponent($('orderNotes').value||'None')+'%0A%0APRESENTATION ONLY — NOT A REAL ORDER';$('modal').classList.remove('show');const w=window.open('','_blank');if(w){w.document.write('<title>Demo order summary</title><pre style="font:16px monospace;white-space:pre-wrap;padding:30px;line-height:1.8">'+decodeURIComponent(summary).replace(/</g,'&lt;')+'</pre><button onclick="window.print()">Print summary</button>');w.document.close()}else toast('Allow pop-ups to view the demo summary');};
 $('year').textContent=new Date().getFullYear();restoreCart();renderMenu();renderCart();
+
+// Scroll reveals for the sections and menu cards, including cards added by filters.
+(function cheerfulMotion(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)return;
+  document.body.classList.add('motion-ready');
+  const revealTargets='.visit-banner,.qualities,.section-intro,.filters,.story-art,.story>div:last-child,.closing,footer,.dish';
+  const reveal=(root=document)=>{
+    root.querySelectorAll(revealTargets).forEach(el=>{
+      if(el.classList.contains('reveal'))return;
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  };
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -35px 0px'});
+  reveal();
+  const menuObserver=new MutationObserver(()=>reveal($('menuGrid')));
+  menuObserver.observe($('menuGrid'),{childList:true});
+  // Gentle pointer parallax on desktop only; never hijack touch scrolling.
+  const hero=document.querySelector('.hero-visual');
+  if(hero&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    hero.addEventListener('pointermove',event=>{
+      const r=hero.getBoundingClientRect();
+      const x=(event.clientX-r.left)/r.width-.5;
+      const y=(event.clientY-r.top)/r.height-.5;
+      hero.style.setProperty('--tilt-x',(y*-2).toFixed(2)+'deg');
+      hero.style.setProperty('--tilt-y',(x*2).toFixed(2)+'deg');
+      hero.style.transform='perspective(900px) rotate(1.5deg) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))';
+    });
+    hero.addEventListener('pointerleave',()=>{hero.style.transform=''});
+  }
+})();
