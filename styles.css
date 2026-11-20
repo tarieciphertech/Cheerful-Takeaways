@@ -397,3 +397,34 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
  .motion-ready .reveal{opacity:1;transform:none}
 }
+
+
+/* Menu switcher + basket feedback: Cheerful's little moments */
+.filters{position:relative;isolation:isolate}
+.filter{position:relative;overflow:hidden;transition:color .28s,background .28s,border-color .28s,transform .28s}
+.filter:active{transform:scale(.96)}
+.filter.active{box-shadow:0 4px 0 #0e3928,0 8px 18px #174d3720}
+.menu-grid.is-switching .dish{animation:menu-pop .42s var(--motion-ease) both}
+.menu-grid.is-switching .dish:nth-child(2){animation-delay:.035s}
+.menu-grid.is-switching .dish:nth-child(3){animation-delay:.07s}
+.menu-grid.is-switching .dish:nth-child(4){animation-delay:.105s}
+.menu-grid.is-switching .dish:nth-child(5){animation-delay:.14s}
+.menu-grid.is-switching .dish:nth-child(6){animation-delay:.175s}
+.add-btn{position:relative;isolation:isolate}
+.add-btn.added{animation:add-pop .42s var(--motion-ease)}
+.cart-open.bump #cartCount{animation:count-pop .42s var(--motion-ease)}
+#cartCount{display:inline-grid;place-items:center;min-width:22px;min-height:22px;transition:background .2s}
+.cart-line{position:relative}
+.cart-line .line-controls button{transition:background .2s,color .2s,transform .2s}
+.cart-line .line-controls button:hover{background:var(--green);color:white;transform:scale(1.08)}
+.cart-line .line-controls button:active{transform:scale(.9)}
+.cart-line .remove-line{border:0;background:#fff0e9;color:var(--rust);font-size:14px;margin-left:3px}
+.cart-line .remove-line:hover{background:var(--rust);color:white}
+.cart-drawer.show .drawer-head,.cart-drawer.show .drawer-bottom{animation:rise-in .35s var(--motion-ease) both}
+.cart-drawer.show .drawer-bottom{animation-delay:.08s}
+.empty-cart{display:grid;justify-items:center;gap:10px}
+.empty-cart:before{content:"✳";display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:#fff0bc;color:var(--rust);font-size:31px;transform:rotate(-9deg)}
+@keyframes menu-pop{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes add-pop{0%{transform:scale(1)}40%{transform:scale(1.22) rotate(8deg)}100%{transform:scale(1)}}
+@keyframes count-pop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.menu-grid.is-switching .dish,.add-btn.added,#cartCount{animation:none!important}}
