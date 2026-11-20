@@ -343,3 +343,57 @@ footer{background:#fff0c9;border-top:3px solid var(--gold)}
  .header-location{margin-right:12px;padding:7px 9px}
 }
 @media(prefers-reduced-motion:reduce){.hero-visual,.dish,.btn{transition:none!important}}
+
+
+/* Cheerful motion language — playful, tactile and lightweight */
+:root{--motion-ease:cubic-bezier(.2,.75,.25,1)}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+.hero-visual{animation:hero-arrive .95s var(--motion-ease) both;will-change:transform}
+.photo-hero>img{animation:food-drift 18s ease-in-out infinite alternate;transform-origin:center}
+.floating-note{animation:note-bob 4.2s ease-in-out infinite}
+.visual-stamp{animation:stamp-turn 24s linear infinite}
+.hero-copy .eyebrow{animation:rise-in .65s .08s both}
+.hero h1{animation:rise-in .8s .16s both}
+.hero-copy>p{animation:rise-in .8s .25s both}
+.hero-actions{animation:rise-in .8s .34s both}
+.hero-location{animation:rise-in .8s .42s both}
+.visit-banner{position:relative;overflow:hidden}
+.visit-banner:after{content:"✳";position:absolute;right:4%;top:-55px;font-size:190px;line-height:1;color:#174d3710;pointer-events:none;animation:slow-spin 32s linear infinite}
+.qualities>div{transition:transform .35s var(--motion-ease)}
+.qualities>div:hover{transform:translateY(-4px)}
+.dish{transform:translateY(0);transition:transform .45s var(--motion-ease),box-shadow .45s var(--motion-ease),border-color .3s}
+.dish:hover{transform:translateY(-9px) rotate(-.35deg);box-shadow:0 17px 0 #eadcb9,0 24px 42px #263c2b16}
+.dish-art img{transition:transform .75s var(--motion-ease),filter .75s}
+.dish:hover .dish-art img{transform:scale(1.09);filter:saturate(1.2)}
+.add-btn,.btn,.cart-open,.filter,.map-link{transition:transform .25s var(--motion-ease),box-shadow .25s,background .25s}
+.add-btn:active,.btn:active,.cart-open:active{transform:translateY(2px) scale(.97)}
+.story-art{transition:transform .7s var(--motion-ease)}
+.story-art:hover{transform:rotate(0) translateY(-5px)}
+.story-circle b{display:inline-block;animation:slow-spin 18s linear infinite}
+.closing{position:relative;overflow:hidden}
+.closing:before{content:"";position:absolute;inset:0 auto 0 -35%;width:25%;background:linear-gradient(90deg,transparent,#ffffff18,transparent);transform:skewX(-18deg);animation:closing-shimmer 8s 1s ease-in-out infinite}
+.cart-drawer,.checkout-modal{will-change:transform}
+.cart-line{animation:rise-in .3s var(--motion-ease) both}
+.motion-ready .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s var(--motion-ease),transform .75s var(--motion-ease)}
+.motion-ready .reveal.is-visible{opacity:1;transform:translateY(0)}
+.motion-ready .dish.reveal:nth-child(3n+2){transition-delay:.08s}
+.motion-ready .dish.reveal:nth-child(3n){transition-delay:.16s}
+@keyframes rise-in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hero-arrive{from{opacity:0;transform:translateY(25px) rotate(4deg) scale(.97)}to{opacity:1;transform:translateY(0) rotate(1.5deg) scale(1)}}
+@keyframes food-drift{from{transform:scale(1.02) translate3d(-.4%,0,0)}to{transform:scale(1.1) translate3d(.5%,-.5%,0)}}
+@keyframes note-bob{0%,100%{translate:0 0;rotate:-5deg}50%{translate:0 -9px;rotate:-3deg}}
+@keyframes stamp-turn{from{rotate:9deg}to{rotate:369deg}}
+@keyframes slow-spin{to{rotate:360deg}}
+@keyframes closing-shimmer{0%,55%{left:-35%}85%,100%{left:125%}}
+@media(max-width:760px){
+ .hero-visual{animation:hero-arrive .8s var(--motion-ease) both}
+ .photo-hero>img{animation-duration:24s}
+ .visit-banner:after{right:-15px;font-size:125px}
+ .dish:hover{transform:translateY(-3px)}
+}
+@media(hover:none){.dish:hover{transform:none;box-shadow:0 7px 0 #eadcb9}.dish:hover .dish-art img{transform:none}}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+ .motion-ready .reveal{opacity:1;transform:none}
+}
